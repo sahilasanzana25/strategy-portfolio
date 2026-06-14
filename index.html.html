@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Strategy Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:     #1a1a2e;
+    --slate:   #2d2d44;
+    --gold:    #c9a84c;
+    --gold-lt: #e8d49e;
+    --cream:   #f9f6f0;
+    --white:   #ffffff;
+    --muted:   #6b6b80;
+    --border:  #e2ddd6;
+    --card-bg: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    padding: 72px 48px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.18);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 40%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.10);
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  h1 span {
+    color: var(--gold);
+  }
+
+  .header-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.62);
+    max-width: 520px;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  .gold-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 28px 0;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 72px 32px 100px;
+  }
+
+  .section-label {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── DECK CARDS ── */
+  .deck-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+    margin-bottom: 64px;
+  }
+
+  .deck-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .deck-card:hover {
+    box-shadow: 0 12px 40px rgba(26,26,46,0.12);
+    transform: translateY(-3px);
+  }
+
+  .deck-thumb {
+    width: 100%;
+    height: 178px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Individual brand color themes */
+  .thumb-mezzetta {
+    background: linear-gradient(135deg, #1b3a2d 0%, #2e6b4f 100%);
+  }
+  .thumb-crescent {
+    background: linear-gradient(135deg, #0d2240 0%, #1a3d6b 100%);
+  }
+  .thumb-placeholder {
+    background: linear-gradient(135deg, #2d2d44 0%, #3f3f5c 100%);
+  }
+
+  .thumb-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    text-align: center;
+    padding: 0 20px;
+    line-height: 1.3;
+  }
+
+  .thumb-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(201,168,76,0.9);
+    color: var(--ink);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 2px;
+  }
+
+  .thumb-slides {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .deck-body {
+    padding: 22px 22px 24px;
+  }
+
+  .deck-brand {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .deck-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .deck-desc {
+    font-size: 0.845rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+
+  .deck-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    background: var(--cream);
+    color: var(--slate);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .deck-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 9px 18px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+
+  .deck-cta:hover {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  .deck-cta svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+
+  /* ── COMING SOON CARD ── */
+  .deck-card.soon {
+    border-style: dashed;
+    background: transparent;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .deck-card.soon .thumb-placeholder {
+    opacity: 0.6;
+  }
+
+  /* ── ABOUT STRIP ── */
+  .about-strip {
+    border-top: 1px solid var(--border);
+    padding-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  @media (max-width: 600px) {
+    .about-strip { grid-template-columns: 1fr; gap: 32px; }
+    header { padding: 52px 24px 48px; }
+    main { padding: 48px 20px 72px; }
+    .deck-grid { grid-template-columns: 1fr; }
+  }
+
+  .about-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .about-text {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .about-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .competency-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .competency-list li {
+    font-size: 0.875rem;
+    color: var(--slate);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .competency-list li::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">Brand Strategy · CPG &amp; Consumer Marketing</p>
+    <h1>Strategy <span>Portfolio</span></h1>
+    <div class="gold-rule"></div>
+    <p class="header-desc">Executive-level brand strategy decks built for real roles — covering positioning, integrated marketing, innovation, and campaign concepts. Each deck reflects primary research, competitive analysis, and category-specific insight.</p>
+  </div>
+</header>
+
+<main>
+  <p class="section-label">Featured Decks</p>
+
+  <div class="deck-grid">
+
+    <!-- MEZZETTA -->
+    <a class="deck-card" href="YOUR_MEZZETTA_LINK_HERE" target="_blank" rel="noopener">
+      <div class="deck-thumb thumb-mezzetta">
+        <div class="thumb-logo">Mezzetta<br>Brand Strategy</div>
+        <span class="thumb-badge">Brand Manager</span>
+        <span class="thumb-slides">11 slides</span>
+      </div>
+      <div class="deck-body">
+        <p class="deck-brand">Mezzetta · Premium Condiments</p>
+        <h2 class="deck-title">Brand Positioning &amp; Integrated Marketing Strategy</h2>
+        <p class="deck-desc">Full brand strategy for Mezzetta's Brand Manager role — covering positioning, campaign architecture, innovation pipeline, and a priorities scorecard.</p>
+        <div class="deck-tags">
+          <span class="tag">Positioning</span>
+          <span class="tag">IMC</span>
+          <span class="tag">Innovation</span>
+          <span class="tag">Scorecard</span>
+        </div>
+        <span class="deck-cta">
+          View Deck
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- CRESCENT FOODS -->
+    <a class="deck-card" href="YOUR_CRESCENT_LINK_HERE" target="_blank" rel="noopener">
+      <div class="deck-thumb thumb-crescent">
+        <div class="thumb-logo">Crescent Foods<br>Brand Strategy</div>
+        <span class="thumb-badge">Emerging Brands</span>
+        <span class="thumb-slides">13 slides</span>
+      </div>
+      <div class="deck-body">
+        <p class="deck-brand">Crescent Foods · Halal CPG</p>
+        <h2 class="deck-title">Emerging Brands Marketing Strategy &amp; Growth Roadmap</h2>
+        <p class="deck-desc">Strategic roadmap for scaling Crescent Foods' halal portfolio — applying the Liberation Zone framework to food freedom, with phased brand and channel strategy.</p>
+        <div class="deck-tags">
+          <span class="tag">Growth Strategy</span>
+          <span class="tag">Halal CPG</span>
+          <span class="tag">Roadmap</span>
+          <span class="tag">Framework</span>
+        </div>
+        <span class="deck-cta">
+          View Deck
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- PLACEHOLDER / COMING SOON -->
+    <div class="deck-card soon">
+      <div class="deck-thumb thumb-placeholder">
+        <div class="thumb-logo">Next Deck<br>Coming Soon</div>
+      </div>
+      <div class="deck-body">
+        <p class="deck-brand">In Progress</p>
+        <h2 class="deck-title">New Brand Strategy Deck</h2>
+        <p class="deck-desc">Additional strategy work in progress.</p>
+        <div class="deck-tags">
+          <span class="tag">TBD</span>
+        </div>
+        <span class="deck-cta">Coming Soon</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ABOUT STRIP -->
+  <div class="about-strip">
+    <div>
+      <p class="about-label">Background</p>
+      <p class="about-text">
+        <strong>CPG brand management professional</strong> with experience spanning Marico Bangladesh, Reckitt Benckiser Bangladesh, and healthcare administration. BBA from IBA, University of Dhaka. Based in San Mateo, CA — open to brand management and marketing consulting roles.
+      </p>
+    </div>
+    <div>
+      <p class="about-label">Core Competencies</p>
+      <ul class="competency-list">
+        <li>Brand Positioning &amp; Architecture</li>
+        <li>Integrated Marketing Communications</li>
+        <li>Innovation Pipeline Development</li>
+        <li>Campaign Concept &amp; Creative Strategy</li>
+        <li>Competitive Analysis &amp; Consumer Insight</li>
+        <li>Cross-functional Stakeholder Management</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 &nbsp;·&nbsp; Brand Strategy Portfolio &nbsp;·&nbsp; San Mateo, CA
+</footer>
+
+</body>
+</html>
